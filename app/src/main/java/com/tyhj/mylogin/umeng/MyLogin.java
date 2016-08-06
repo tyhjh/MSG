@@ -19,6 +19,9 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewOutlineProvider;
 import android.view.WindowManager;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -54,6 +57,7 @@ public class MyLogin extends AppCompatActivity {
     public static int THEWAY_TO_LOG=1;
     UMShareAPI mShareAPI;
     SHARE_MEDIA platform;
+    Animation animation;
     @ViewById
     Button btnWeiXin,btnQQ,btnWeiBo,btLogin;
     @ViewById
@@ -121,8 +125,20 @@ public class MyLogin extends AppCompatActivity {
         }
 
     }
+    @Background
+    void bgd(){
+        animation= AnimationUtils.loadAnimation(this,R.anim.blowup);
+        animation();
+    }
+    @UiThread()
+    void animation(){
+        btnQQ.startAnimation(animation);
+        btnWeiXin.startAnimation(animation);
+        btnWeiBo.startAnimation(animation);
+    }
     @AfterViews
     void initViews(){
+        bgd();
         Picasso.with(MyLogin.this).load(R.drawable.im_user).
                 resize(100, 100).centerCrop().into(iv_user);
         Picasso.with(MyLogin.this).load(R.drawable.im_pas).
@@ -306,7 +322,7 @@ public class MyLogin extends AppCompatActivity {
         @Override
         public void getOutline(View view, Outline outline) {
             final int margin = Math.min(view.getWidth(), view.getHeight()) / 10;
-            outline.setRoundRect(0, 0, view.getWidth(), view.getHeight(), 10);
+            outline.setRoundRect(0, 0, view.getWidth(), view.getHeight(), 17);
             //outline.setOval(margin, margin, view.getWidth() - margin, view.getHeight() - margin);
         }
     };

@@ -36,6 +36,15 @@ dependencies {
     compile 'com.android.support:appcompat-v7:23.4.0'
     compile 'com.android.support:support-v4:23.3.0'
     compile 'com.android.support:design:23.4.0'
+    /*火柴动画*/
+    compile 'com.roger.match.library:library:1.0.1'
+    /*浮现动画*/
+    compile 'com.getbase:floatingactionbutton:1.10.1'
+    /*下拉刷新*/
+    compile 'com.yalantis:phoenix:1.2.3'
+    /*广告轮播*/
+    compile 'com.bigkoo:convenientbanner:2.0.5'
+
     compile files('libs/mta-sdk-1.6.2.jar')
     compile files('libs/SocialSDK_Sina.jar')
     compile files('libs/SocialSDK_WeiXin_1.jar')
@@ -49,4 +58,6 @@ dependencies {
     compile files('libs/SocialSDK_QQZone_3.jar')
     compile files('libs/SocialSDK_WeiXin_2.jar')
     compile files('libs/mysql-connector-java-5.0.8-bin.jar')
+    compile 'com.nineoldandroids:library:2.4.0'
+    compile 'com.melnykov:floatingactionbutton:1.0.7'
 }

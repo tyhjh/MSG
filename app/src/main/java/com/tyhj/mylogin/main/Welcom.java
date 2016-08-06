@@ -1,27 +1,48 @@
 package com.tyhj.mylogin.main;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 
+import com.roger.match.library.MatchButton;
+import com.roger.match.library.MatchTextView;
 import com.tyhj.mylogin.R;
 import com.tyhj.mylogin.umeng.MyLogin_;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Background;
+import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.UiThread;
+import org.androidannotations.annotations.ViewById;
 
 import custom.MyPublic;
 
 @EActivity(R.layout.activity_welcom)
-public class Welcom extends AppCompatActivity {
+public class Welcom extends Activity {
+    MatchTextView mMatchTextView;
+    MatchButton matchButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
-    @UiThread(delay = 1000)
+    @Click(R.id.mbt)
+    void log(){
+        mMatchTextView.hide();
+        matchButton.hide();
+        bg();
+    }
+    @AfterViews
+    void afterView(){
+        matchButton= (MatchButton) findViewById(R.id.mbt);
+        mMatchTextView= (MatchTextView) findViewById(R.id.mtv);
+        mMatchTextView.setText("Tyhj Message");
+    }
+    @UiThread(delay = 1200)
     void bg () {
         SharedPreferences sharedPreferences = this.getSharedPreferences("saveLogin", MODE_PRIVATE);
         if (sharedPreferences != null && sharedPreferences.getString("password", null) != null) {
@@ -34,15 +55,13 @@ public class Welcom extends AppCompatActivity {
                     sharedPreferences.getString("place", null),
                     sharedPreferences.getString("snumber", null)
             ));
-            startActivity(new Intent(Welcom.this, UserInfo.class));
+            startActivity(new Intent(Welcom.this, UserInfo_.class));
             this.finish();
+            overridePendingTransition(R.anim.out, R.anim.enter);
         } else {
             startActivity(new Intent(Welcom.this, MyLogin_.class));
             this.finish();
+            //overridePendingTransition(R.anim.out, R.anim.enter);
         }
-    }
-    @AfterViews
-    void after(){
-        bg();
     }
 }
