@@ -6,7 +6,7 @@ android {
     buildToolsVersion "23.0.3"
     defaultConfig {
         applicationId "com.tyhj.mylogin"
-        minSdkVersion 15
+        minSdkVersion 14
         targetSdkVersion 22
         versionCode 1
         versionName "1.0"
@@ -17,33 +17,32 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    sourceSets.main{
+    sourceSets.main {
         //让AS识别libs下的.so第三方包
-        jniLibs.srcDirs =['libs']
+        jniLibs.srcDirs = ['libs']
     }
     compileOptions {
         sourceCompatibility 1.7
         targetCompatibility 1.7
     }
 }
-
+repositories {
+    jcenter()
+    flatDir {
+        dirs 'libs'
+    }
+}
 dependencies {
     apt "org.androidannotations:androidannotations:$AAVersion"
     compile "org.androidannotations:androidannotations-api:$AAVersion"
-    compile 'com.android.support:cardview-v7:22.2.0'
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:23.4.0'
-    compile 'com.android.support:support-v4:23.3.0'
-    compile 'com.android.support:design:23.4.0'
     /*火柴动画*/
-    compile 'com.roger.match.library:library:1.0.1'
     /*浮现动画*/
-    compile 'com.getbase:floatingactionbutton:1.10.1'
     /*下拉刷新*/
-    compile 'com.yalantis:phoenix:1.2.3'
     /*广告轮播*/
-    compile 'com.bigkoo:convenientbanner:2.0.5'
+    /*Tab导航*/
+
 
     compile files('libs/mta-sdk-1.6.2.jar')
     compile files('libs/SocialSDK_Sina.jar')
@@ -58,6 +57,16 @@ dependencies {
     compile files('libs/SocialSDK_QQZone_3.jar')
     compile files('libs/SocialSDK_WeiXin_2.jar')
     compile files('libs/mysql-connector-java-5.0.8-bin.jar')
+    compile 'com.android.support:cardview-v7:23.4.0'
+    compile 'com.android.support:appcompat-v7:23.4.0'
+    compile 'com.android.support:support-v4:23.4.0'
+    compile 'com.android.support:design:23.4.0'
+    compile 'com.roger.match.library:library:1.0.1'
+    compile 'com.getbase:floatingactionbutton:1.10.1'
+    compile 'com.yalantis:phoenix:1.2.3'
+    compile 'com.bigkoo:convenientbanner:2.0.5'
+    compile 'com.jpardogo.materialtabstrip:library:1.1.0'
     compile 'com.nineoldandroids:library:2.4.0'
     compile 'com.melnykov:floatingactionbutton:1.0.7'
+    compile 'com.mxn.soul:flowingdrawer-core:1.2.5'
 }

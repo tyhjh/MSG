@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<waveNavigation.LeftDrawerLayout
+    android:id="@+id/id_drawerlayout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:clipChildren="false"
+    >
+
+    <!--content-->
+    <android.support.design.widget.CoordinatorLayout
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:orientation="vertical"
+            xmlns:android="http://schemas.android.com/apk/res/android">
+            <com.astuetz.PagerSlidingTabStrip
+                android:elevation="5dp"
+                android:id="@+id/tabs"
+                app:pstsShouldExpand="true"
+                app:pstsTabTextColor="@color/white"
+                app:pstsIndicatorColor="@color/colorAccent"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="?attr/colorPrimary" />
+            <android.support.v4.view.ViewPager
+                android:id="@+id/vpTab"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+            </android.support.v4.view.ViewPager>
+        </LinearLayout>
+    </android.support.design.widget.CoordinatorLayout>
+
+    <!--menu-->
+    <RelativeLayout
+        android:layout_width="280dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:clipChildren="false"
+        >
+        <waveNavigation.FlowingView
+            android:id="@+id/sv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+        <FrameLayout
+            android:id="@+id/id_container_menu"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            />
+    </RelativeLayout>
+
+</waveNavigation.LeftDrawerLayout>

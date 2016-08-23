@@ -3,9 +3,9 @@
     <color name="colorPrimary">#fc0</color>
     <color name="colorPrimaryDark">#FF4081</color>
     <color name="colorAccent">#09aea4</color>
-    <color name="bule">#009688</color>
-    <color name="fc">#fc0</color>
     <color name="login">#afffcc00</color>
-    <color name="accent">#eeff41</color>
-    <color name="accentLight">#F4FF81</color>
+    <color name="gray">#AFAFAF</color>
+    <color name="white">#ffffff</color>
+    <color name="bule">#33c9c0</color>
+    <color name="fab_color_pressed">#01bcd5</color>
 </resources>

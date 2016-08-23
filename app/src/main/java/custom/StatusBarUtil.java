@@ -11,6 +11,8 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
 
+import com.mxn.soul.flowingdrawer_core.LeftDrawerLayout;
+
 /**
  * Created by Jaeger on 16/2/14.
  *
@@ -281,7 +283,31 @@ public class StatusBarUtil {
         contentLayout.setClipToPadding(true);
         drawer.setFitsSystemWindows(false);
     }
+    public static void setTransparentForDrawerLayout(Activity activity, LeftDrawerLayout drawerLayout) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
+            return;
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            activity.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            activity.getWindow().setStatusBarColor(Color.TRANSPARENT);
+        } else {
+            activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        }
 
+        ViewGroup contentLayout = (ViewGroup) drawerLayout.getChildAt(0);
+        // 内容布局不是 LinearLayout 时,设置padding top
+        if (!(contentLayout instanceof LinearLayout) && contentLayout.getChildAt(1) != null) {
+            contentLayout.getChildAt(1).setPadding(0, getStatusBarHeight(activity), 0, 0);
+        }
+
+        // 设置属性
+        ViewGroup drawer = (ViewGroup) drawerLayout.getChildAt(1);
+        drawerLayout.setFitsSystemWindows(false);
+        contentLayout.setFitsSystemWindows(false);
+        contentLayout.setClipToPadding(true);
+        drawer.setFitsSystemWindows(false);
+    }
     /**
      * 为 DrawerLayout 布局设置状态栏透明(5.0以上半透明效果,不建议使用)
      *

@@ -29,7 +29,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
-import com.tyhj.mylogin.R;
+import com.tyhj.mylogin.R;;
 import com.tyhj.mylogin.main.Register_;
 import com.umeng.socialize.PlatformConfig;
 import com.umeng.socialize.UMAuthListener;

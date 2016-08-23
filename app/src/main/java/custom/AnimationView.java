@@ -474,7 +474,7 @@ public class AnimationView extends View {
         return Math.min(ratio, 1);
     }
 
-    private static final long DONE_DUR = 900;
+    private static final long DONE_DUR = 1000;
     private long mDoneStart;
     private long mDoneStop;
 

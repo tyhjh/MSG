@@ -11,7 +11,7 @@ import android.view.View;
 import com.roger.match.library.MatchButton;
 import com.roger.match.library.MatchTextView;
 import com.tyhj.mylogin.R;
-import com.tyhj.mylogin.umeng.MyLogin_;
+import com.tyhj.mylogin.umeng.MyLogin_;;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Background;
@@ -34,6 +34,7 @@ public class Welcom extends Activity {
     void log(){
         mMatchTextView.hide();
         matchButton.hide();
+        matchButton.setClickable(false);
         bg();
     }
     @AfterViews
@@ -55,7 +56,7 @@ public class Welcom extends Activity {
                     sharedPreferences.getString("place", null),
                     sharedPreferences.getString("snumber", null)
             ));
-            startActivity(new Intent(Welcom.this, UserInfo_.class));
+            startActivity(new Intent(Welcom.this, Home.class));
             this.finish();
             overridePendingTransition(R.anim.out, R.anim.enter);
         } else {

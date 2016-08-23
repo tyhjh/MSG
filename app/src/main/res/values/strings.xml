@@ -1,12 +1,10 @@
 <resources>
     <string name="app_name">MSG</string>
-    <string name="action_settings">Settings</string>
     <string name="account_other_account_prompt">其他账号快速登录</string>
-    <string name="text_account_loadding">正在处理...</string>
-    <string name="account_not_install_wx">未安装微信，请先安装微信</string>
-    <string name="menu_share_picture">分享图片</string>
-    <string name="menu_share_text">分享文字</string>
-    <string name="text_account_sharing">分享中...</string>
     <string name="registers">您好：\n感谢您注册MSG,这是一封注册确认邮件\n您的验证码是：</string>
     <string name="registere">\n为了保障您帐号的安全性，请在48小时内完成账号注册，此验证码仅本次注册有效！</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="signature">这个同学很懒，什么都没有留下...</string>
 </resources>
