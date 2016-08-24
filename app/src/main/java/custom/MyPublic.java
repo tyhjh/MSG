@@ -2,6 +2,7 @@ package custom;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Outline;
 import android.net.ConnectivityManager;
 import android.view.View;
@@ -74,5 +75,10 @@ public  class MyPublic {
             };
         }
 
+    }
+    //Intent
+    public static void startActivity(Context context,Class activity){
+        Intent intent=new Intent(context,activity);
+        context.startActivity(intent);
     }
 }

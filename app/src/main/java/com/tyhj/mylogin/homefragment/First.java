@@ -41,7 +41,6 @@ public class First extends Fragment {
     private SimpleAdapter mAdapter;
     String[] images = {"http://ac-fgtnb2h8.clouddn.com/4233508e35d9d761.jpg",
             "http://ac-fgtnb2h8.clouddn.com/5e88ec1c9147083c.jpg",
-            "http://img2.3lian.com/2014/f2/37/d/39.jpg",
             "http://ac-fgtnb2h8.clouddn.com/bd96d6384f330055.jpg",
             "http://ac-fgtnb2h8.clouddn.com/cc3e9b7f9481604c.jpg",
             "http://ac-fgtnb2h8.clouddn.com/e52fbbc9c6af6013.jpg",

@@ -1,5 +1,5 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <group >
+    <group android:checkableBehavior="single">
         <item
             android:id="@+id/menu_feed"
             android:icon="@drawable/ic_global_menu_feed"
@@ -32,5 +32,8 @@
         <item
             android:id="@+id/menu_about"
             android:title="About" />
+        <item
+            android:id="@+id/menu_out"
+            android:title="Logout" />
     </group>
 </menu>

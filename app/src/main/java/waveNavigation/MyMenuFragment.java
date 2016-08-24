@@ -1,5 +1,6 @@
 package waveNavigation;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
@@ -12,6 +13,8 @@ import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 import com.tyhj.mylogin.R;
+import com.tyhj.mylogin.umeng.MyLogin;
+import com.tyhj.mylogin.umeng.MyLogin_;
 
 import custom.MyPublic;
 import waveNavigation.MenuFragment;
@@ -20,7 +23,6 @@ import waveNavigation.MenuFragment;
 public class MyMenuFragment extends MenuFragment {
     NavigationView navigationView;
     View view;
-    View headView;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,9 +32,8 @@ public class MyMenuFragment extends MenuFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_menu, container, false);
         navigationView= (NavigationView) view.findViewById(R.id.vNavigation);
-        headView=navigationView.getHeaderView(0);
-        ImageView imageView=(ImageView) headView.findViewById(R.id.userheadImage);
-        imageView.setOutlineProvider(MyPublic.getOutline(true,10));
+        ImageView imageView=(ImageView) view.findViewById(R.id.userheadImage);
+        imageView.setOutlineProvider(MyPublic.getOutline(true,20));
         imageView.setClipToOutline(true);
         Picasso.with(getActivity()).load(R.mipmap.headimage).into(imageView);
         return  setupReveal(view) ;
@@ -46,28 +47,28 @@ public class MyMenuFragment extends MenuFragment {
             public boolean onNavigationItemSelected(MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.menu_feed:
-                        Toast.makeText(getActivity(),"menu_feed",Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.menu_direct:
-                        Toast.makeText(getActivity(),"menu_direct",Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.menu_news:
-                        Toast.makeText(getActivity(),"menu_news",Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.menu_popular:
-                        Toast.makeText(getActivity(),"menu_popular",Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.menu_photos_nearby:
-                        Toast.makeText(getActivity(),"menu_photos_nearby",Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.menu_group_2:
-                        Toast.makeText(getActivity(),"menu_group_2",Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.menu_settings:
-                        Toast.makeText(getActivity(),"menu_settings",Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.menu_about:
-                        Toast.makeText(getActivity(),"menu_about",Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.menu_out:
+                        //删除数据
+                        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("saveLogin", getActivity().MODE_PRIVATE);
+                        sharedPreferences.edit().clear().commit();
+                        MyPublic.setUserInfo(null);
+                        MyPublic.startActivity(getActivity(), MyLogin_.class);
+                        getActivity().finish();
                         break;
                 }
                 return false;

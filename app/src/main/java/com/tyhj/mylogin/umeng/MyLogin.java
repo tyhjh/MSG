@@ -30,6 +30,7 @@ import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 import com.tyhj.mylogin.R;;
+import com.tyhj.mylogin.main.Home;
 import com.tyhj.mylogin.main.Register_;
 import com.umeng.socialize.PlatformConfig;
 import com.umeng.socialize.UMAuthListener;
@@ -54,6 +55,7 @@ import database.UserInfo;
 
 @EActivity(R.layout.mylogin)
 public class MyLogin extends AppCompatActivity {
+    private static String INT="012345678912454";
     public static int THEWAY_TO_LOG=1;
     UMShareAPI mShareAPI;
     SHARE_MEDIA platform;
@@ -107,6 +109,7 @@ public class MyLogin extends AppCompatActivity {
     //账号密码登陆
     @Click(R.id.btLogin)
     void login(){
+        mySnakbar(btLogin, "登陆中");
         if(MyPublic.isIntenet(this))
         tryLog();
     }
@@ -117,7 +120,8 @@ public class MyLogin extends AppCompatActivity {
              if(userInfo!=null) {
                  saveLogIn(userInfo);
                  getString();
-                 mySnakbar(btLogin, "登陆成功");
+
+                 startActivity();
              }else
                  mySnakbar(btLogin,"账号或密码错误");
         }else {
@@ -201,6 +205,7 @@ public class MyLogin extends AppCompatActivity {
         mShareAPI.doOauthVerify(MyLogin.this, platform, new UMAuthListener() {
             @Override
             public void onComplete(SHARE_MEDIA share_media, int i, Map<String, String> map) {
+                mySnakbar(btLogin, "登陆中");
                 getInfo();
             }
 
@@ -258,7 +263,8 @@ public class MyLogin extends AppCompatActivity {
                             if(userInfo!=null) {
                                 saveLogIn(userInfo);
                                 getString();
-                                mySnakbar(btLogin, "登陆成功");
+
+                                startActivity();
                             }
                         }
                     }).start();
@@ -278,6 +284,12 @@ public class MyLogin extends AppCompatActivity {
             }
         });
     }
+    @UiThread
+    public void startActivity() {
+        MyPublic.startActivity(MyLogin.this, Home.class);
+        this.finish();
+    }
+
     //删除权限
     private void removeRoot() {
         mShareAPI.deleteOauth(MyLogin.this, platform, new UMAuthListener() {
@@ -313,7 +325,7 @@ public class MyLogin extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         SharedPreferences sharedPreferences = this.getSharedPreferences("saveLogin", MODE_PRIVATE);
-        if(sharedPreferences!=null)
+        if(sharedPreferences!=null&&sharedPreferences.getString("number",INT).length()<12)
             etUserNumber.setText(sharedPreferences.getString("number",null));
     }
 
@@ -345,6 +357,16 @@ public class MyLogin extends AppCompatActivity {
         editor.putString("headImage",userInfo.getUrl());
         editor.putBoolean("canLogin", true);
         editor.commit();
+
+        MyPublic.setUserInfo(new database.UserInfo(sharedPreferences.getString("number", null),
+                sharedPreferences.getString("password", null),
+                sharedPreferences.getString("headImage", null),
+                sharedPreferences.getString("name", null),
+                sharedPreferences.getString("email", null),
+                sharedPreferences.getString("signature", null),
+                sharedPreferences.getString("place", null),
+                sharedPreferences.getString("snumber", null)
+        ));
     }
     //SharedPreferences图片保存
     private void savaImage(){
