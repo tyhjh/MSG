@@ -29,7 +29,11 @@ public class Myslq {
             e.printStackTrace();
         }
         try {
-            statement=(Statement) conn.createStatement();
+            if(conn!=null) {
+                statement = (Statement) conn.createStatement();
+            }else {
+
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }

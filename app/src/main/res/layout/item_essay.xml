@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?><!-- item_feed.xml -->
-<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:id="@+id/card_view"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
     android:layout_margin="8dp"
-    card_view:cardCornerRadius="4dp">
+    card_view:cardCornerRadius="6dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -63,15 +64,15 @@
             android:padding="8dp">
 
             <ImageButton
-                android:id="@+id/btnLike"
+                android:id="@+id/ibtnLike"
                 android:layout_width="32dp"
                 android:layout_height="32dp"
                 android:background="?android:attr/selectableItemBackgroundBorderless"
-                android:src="@drawable/iccollected" />
+                android:src="@drawable/icmecollect" />
 
             <ImageButton
                 android:layout_marginLeft="20dp"
-                android:id="@+id/btnComments"
+                android:id="@+id/ibLeft"
                 android:layout_width="32dp"
                 android:layout_height="32dp"
                 android:background="?android:attr/selectableItemBackgroundBorderless"
@@ -79,7 +80,7 @@
 
             <ImageButton
                 android:layout_marginLeft="20dp"
-                android:id="@+id/btnMore"
+                android:id="@+id/ibMenu"
                 android:layout_width="32dp"
                 android:layout_height="32dp"
                 android:background="?android:attr/selectableItemBackgroundBorderless"
@@ -92,11 +93,12 @@
                 android:gravity="center_vertical|right">
 
                 <ImageView
+                    android:id="@+id/likes"
                     android:clickable="true"
                     android:background="?android:attr/selectableItemBackgroundBorderless"
                     android:layout_width="16dp"
                     android:layout_height="16dp"
-                    android:src="@drawable/iccollect" />
+                    android:src="@drawable/iccollected" />
 
                 <TextSwitcher
                     android:id="@+id/tsLikesCounter"
@@ -108,6 +110,7 @@
                     android:outAnimation="@anim/slide_out_likes_counter">
 
                     <TextView
+                        android:id="@+id/tvLikes"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="123 likes"

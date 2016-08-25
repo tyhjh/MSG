@@ -23,5 +23,15 @@
 
 
     <!--=====================================自定义style================================-->
+    <style name="Dialog_Fullscreen">
+        <item name="colorControlHighlight">@color/half</item>
+        <item name="android:windowBackground">@color/half</item>
+        <item name="android:windowIsTranslucent">true</item>        <!-- 设置半透明 -->
+    </style>
 
+
+    <style name="ButtonTheme" parent="@style/Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorButtonNormal">#f0111111</item>
+        <item name="colorControlHighlight">#50ffcc00</item>
+    </style>
 </resources>

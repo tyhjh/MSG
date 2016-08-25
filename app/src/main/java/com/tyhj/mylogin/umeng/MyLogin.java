@@ -115,12 +115,17 @@ public class MyLogin extends AppCompatActivity {
     }
     @Background
      void tryLog() {
+        UserInfo userInfo;
         if(!etUserPassord.getText().toString().trim().equals("")&&!etUserNumber.getText().toString().trim().equals("")){
-            UserInfo userInfo=new Myslq().logIn(etUserNumber.getText().toString().trim(),etUserPassord.getText().toString().trim());
+            try {
+                userInfo=new Myslq().logIn(etUserNumber.getText().toString().trim(),etUserPassord.getText().toString().trim());
+            }catch (Exception e){
+                mySnakbar(btLogin,"网络异常");
+                userInfo=null;
+            }
              if(userInfo!=null) {
                  saveLogIn(userInfo);
                  getString();
-
                  startActivity();
              }else
                  mySnakbar(btLogin,"账号或密码错误");
@@ -263,7 +268,6 @@ public class MyLogin extends AppCompatActivity {
                             if(userInfo!=null) {
                                 saveLogIn(userInfo);
                                 getString();
-
                                 startActivity();
                             }
                         }
@@ -341,7 +345,7 @@ public class MyLogin extends AppCompatActivity {
     //Toast
     @UiThread
     public  void mySnakbar(View view, String str){
-        Snackbar.make(view,str, Snackbar.LENGTH_SHORT).show();
+        Snackbar.make(view,str, Snackbar.LENGTH_INDEFINITE).show();
     }
     //登陆状态保存
     public void saveLogIn(UserInfo userInfo){

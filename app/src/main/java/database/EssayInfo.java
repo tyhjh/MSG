@@ -10,15 +10,18 @@ public class EssayInfo {
     private String tvLz;
     private String tvEssay;
     private int likeCounts;
+    private boolean isLike;
 
-    public EssayInfo(int number, String ivLz, String ivEssay, String tvLz, String tvEssay, int likeCounts) {
+
+
+    public EssayInfo(int number, String ivLz, String ivEssay, String tvLz, String tvEssay, int likeCounts,boolean isLike) {
         this.likeCounts = likeCounts;
         this.ivLz = ivLz;
         this.ivEssay = ivEssay;
         this.tvLz = tvLz;
         this.tvEssay = tvEssay;
         this.number=number;
-
+        this.isLike=isLike;
     }
     public int getNumber() {
         return number;
@@ -66,5 +69,13 @@ public class EssayInfo {
 
     public void setLikeCounts(int likeCounts) {
         this.likeCounts = likeCounts;
+    }
+
+    public boolean isLike() {
+        return isLike;
+    }
+
+    public void setLike(boolean like) {
+        isLike = like;
     }
 }
