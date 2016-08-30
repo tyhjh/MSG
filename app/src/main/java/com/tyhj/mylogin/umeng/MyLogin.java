@@ -13,6 +13,8 @@ import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Base64;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -68,6 +70,8 @@ public class MyLogin extends AppCompatActivity {
     EditText etUserNumber,etUserPassord;
     @ViewById
     View llLogin;
+    @ViewById
+    ImageView UserHeadImaegLg;
     //注册
     @Click(R.id.tvsign)
     void sign(){
@@ -109,7 +113,7 @@ public class MyLogin extends AppCompatActivity {
     //账号密码登陆
     @Click(R.id.btLogin)
     void login(){
-        mySnakbar(btLogin, "登陆中");
+        mySnakbar(btLogin, "登陆中",Snackbar.LENGTH_INDEFINITE);
         if(MyPublic.isIntenet(this))
         tryLog();
     }
@@ -120,7 +124,7 @@ public class MyLogin extends AppCompatActivity {
             try {
                 userInfo=new Myslq().logIn(etUserNumber.getText().toString().trim(),etUserPassord.getText().toString().trim());
             }catch (Exception e){
-                mySnakbar(btLogin,"网络异常");
+                mySnakbar(btLogin,"网络异常",Snackbar.LENGTH_SHORT);
                 userInfo=null;
             }
              if(userInfo!=null) {
@@ -128,9 +132,9 @@ public class MyLogin extends AppCompatActivity {
                  getString();
                  startActivity();
              }else
-                 mySnakbar(btLogin,"账号或密码错误");
+                 mySnakbar(btLogin,"账号或密码错误",Snackbar.LENGTH_SHORT);
         }else {
-            mySnakbar(btLogin,"账号或密码不能为空");
+            mySnakbar(btLogin,"账号或密码不能为空",Snackbar.LENGTH_SHORT);
         }
 
     }
@@ -152,6 +156,9 @@ public class MyLogin extends AppCompatActivity {
                 resize(100, 100).centerCrop().into(iv_user);
         Picasso.with(MyLogin.this).load(R.drawable.im_pas).
                 resize(100, 100).centerCrop().into(iv_pas);
+        UserHeadImaegLg.setOutlineProvider(MyPublic.getOutline(true,20));
+        UserHeadImaegLg.setClipToOutline(true);
+        Picasso.with(MyLogin.this).load(getString(R.string.defaultheadimage)).into(UserHeadImaegLg);
         tvforgetpas.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -180,8 +187,9 @@ public class MyLogin extends AppCompatActivity {
                 return false;
             }
         });
-        llLogin.setOutlineProvider(viewOutlineProvider);
-        llLogin.setClipToOutline(true);
+        etUserNumber.addTextChangedListener(textWatcher);
+      /*  llLogin.setOutlineProvider(viewOutlineProvider);
+        llLogin.setClipToOutline(true);*/
         SharedPreferences sharedPreferences = this.getSharedPreferences("saveLogin", MODE_PRIVATE);
         if(sharedPreferences!=null)
         etUserNumber.setText(sharedPreferences.getString("number",null));
@@ -210,7 +218,7 @@ public class MyLogin extends AppCompatActivity {
         mShareAPI.doOauthVerify(MyLogin.this, platform, new UMAuthListener() {
             @Override
             public void onComplete(SHARE_MEDIA share_media, int i, Map<String, String> map) {
-                mySnakbar(btLogin, "登陆中");
+                mySnakbar(btLogin, "登陆中",Snackbar.LENGTH_INDEFINITE);
                 getInfo();
             }
 
@@ -231,6 +239,7 @@ public class MyLogin extends AppCompatActivity {
             @Override
             public void onComplete(SHARE_MEDIA share_media, int i, Map<String, String> jo) {
                 Log.i("用户信息:xxxxxxxxxxxxxx",jo.toString());
+                showImage(jo.get("profile_image_url"));
                 String openid = null,location = null,gender = null,screen_name = null,image_url = null;
                 try {
                     switch (THEWAY_TO_LOG){
@@ -263,7 +272,7 @@ public class MyLogin extends AppCompatActivity {
                         @Override
                         public void run() {
                             if(!new Myslq().isUserHad(finalOpenid,null))
-                                new Myslq().addUser(finalOpenid,null, finalImage_url, finalScreen_name,null,null, finalLocation,null);
+                                new Myslq().addUser(finalOpenid,null, finalImage_url, finalScreen_name,null,getString(R.string.signature), finalLocation,null);
                             UserInfo userInfo=new Myslq().logIn(finalOpenid,null);
                             if(userInfo!=null) {
                                 saveLogIn(userInfo);
@@ -344,8 +353,8 @@ public class MyLogin extends AppCompatActivity {
     };
     //Toast
     @UiThread
-    public  void mySnakbar(View view, String str){
-        Snackbar.make(view,str, Snackbar.LENGTH_INDEFINITE).show();
+    public  void mySnakbar(View view, String str,int time){
+        Snackbar.make(view,str, time).show();
     }
     //登陆状态保存
     public void saveLogIn(UserInfo userInfo){
@@ -403,5 +412,38 @@ public class MyLogin extends AppCompatActivity {
         sharedPreferences.getString("headImage",null)+
         sharedPreferences.getBoolean("canLogin", false)
         );
+    }
+
+
+    //邮件地址内容监听
+    TextWatcher textWatcher=new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+           if (etUserNumber.getText().toString().length()==11&&MyPublic.isIntenet(MyLogin.this)){
+               setHeadImageUrl();
+           }
+        }
+    };
+    @UiThread
+    public void showImage(String url) {
+        Picasso.with(MyLogin.this).load(url).into(UserHeadImaegLg);
+    }
+
+    @Background
+    public void setHeadImageUrl() {
+        String url= new Myslq().getHeadImageUrl(etUserNumber.getText().toString());
+        if(!url.equals("null")) {
+            showImage(url);
+        }
     }
 }

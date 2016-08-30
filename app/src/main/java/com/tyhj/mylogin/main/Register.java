@@ -44,8 +44,9 @@ import sendemail.SendEmai;
 @TargetApi(Build.VERSION_CODES.LOLLIPOP)
 @EActivity(R.layout.register)
 public class Register extends Activity {
+    private static String SIGNATURE="这个同学很懒，什么都没有留下...";
     private  String AUTH_CODE=null;
-   private int count=30;
+    private int count=30;
     private static  boolean CANUSNUMBER = false;
     private static  boolean CANUSEEMAIL = false;
     private static  boolean CANGETAUTHCODE = true;
@@ -180,8 +181,8 @@ public class Register extends Activity {
     private void registerNow() {
         try {
             new Myslq().addUser(etRegisterNumber.getText().toString().trim(),
-                    etRegisterPassword.getText().toString().trim(),null,
-                    etRegisterName.getText().toString().trim(),etRegisterEmail.getText().toString().trim(),null,"中国",null);
+                    etRegisterPassword.getText().toString().trim(),getString(R.string.defaultheadimage),
+                    etRegisterName.getText().toString().trim(),etRegisterEmail.getText().toString().trim(),SIGNATURE,"中国",null);
             saveLogIn(new UserInfo(etRegisterNumber.getText().toString().trim(),null,null,null,null,null,null,null));
             myToast(this,"注册成功");
         } catch (Exception e) {

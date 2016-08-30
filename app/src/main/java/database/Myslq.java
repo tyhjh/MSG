@@ -11,7 +11,7 @@ import java.sql.SQLException;
 import custom.MyPublic;
 
 public class Myslq {
-    String url="jdbc:mysql://120.27.49.173:3306/tyhj?useUnicode=true&characterEncoding=utf-8";
+    String url="jdbc:mysql://115.28.16.220/tyhj1?useUnicode=true&characterEncoding=utf-8";
     Connection conn;
     Statement statement;
     public Myslq(){
@@ -57,7 +57,6 @@ public class Myslq {
             e.printStackTrace();
             return false;
         }
-
     }
     //查询邮箱是否被注册
     public boolean isEmailHad (String str,Context context)  {
@@ -118,6 +117,23 @@ public class Myslq {
             }
         }
     }
+    //获取头像
+    public String getHeadImageUrl(String str)  {
+        String sql="select * from user where id='"+str+"'";
+        String url=null;
+        ResultSet rs = null;
+        try {
+            rs = (ResultSet) statement.executeQuery(sql);
+            if (rs.next()) {
+                url=rs.getString(3);
+                release(rs);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return url;
+    }
+
     //释放资源
     private void release(ResultSet rs) throws SQLException {
         conn.close();

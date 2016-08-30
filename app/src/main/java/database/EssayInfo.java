@@ -11,17 +11,17 @@ public class EssayInfo {
     private String tvEssay;
     private int likeCounts;
     private boolean isLike;
+    private String time;
 
-
-
-    public EssayInfo(int number, String ivLz, String ivEssay, String tvLz, String tvEssay, int likeCounts,boolean isLike) {
-        this.likeCounts = likeCounts;
+    public EssayInfo(int number, String ivLz, String ivEssay, String tvLz, String tvEssay, int likeCounts, boolean isLike, String time) {
+        this.number = number;
         this.ivLz = ivLz;
         this.ivEssay = ivEssay;
         this.tvLz = tvLz;
         this.tvEssay = tvEssay;
-        this.number=number;
-        this.isLike=isLike;
+        this.likeCounts = likeCounts;
+        this.isLike = isLike;
+        this.time = time;
     }
     public int getNumber() {
         return number;
@@ -77,5 +77,13 @@ public class EssayInfo {
 
     public void setLike(boolean like) {
         isLike = like;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
     }
 }

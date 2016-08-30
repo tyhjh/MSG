@@ -58,11 +58,16 @@ public class EssayAdapter extends RecyclerView.Adapter<EssayAdapter.MyViewHolder
         holder.ivEssay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                expendImage.callBack(essay.get(position).getIvEssay());
+                expendImage.callBack(essay.get(position));
             }
         });
-        Picasso.with(context).load(essay.get(position).getIvLz()).into(holder.ivLz);
+            Picasso.with(context).load(essay.get(position).getIvLz()).into(holder.ivLz);
         Picasso.with(context).load(essay.get(position).getIvEssay()).into(holder.ivEssay);
+        switch (position){
+            case 0:
+                holder.essayStyle.setBackgroundResource(R.mipmap.essaystyle1);
+                break;
+        }
     }
 
     @Override
@@ -106,7 +111,7 @@ public class EssayAdapter extends RecyclerView.Adapter<EssayAdapter.MyViewHolder
     }
     class MyViewHolder extends RecyclerView.ViewHolder{
         TextView tvLz,tvEssay,tvLikes;
-        ImageView ivLz,ivEssay;
+        ImageView ivLz,ivEssay,essayStyle;
         ImageButton ibLike,ibLeft,ibMenu;
         ImageView likes;
         public MyViewHolder(View itemView) {
@@ -122,9 +127,10 @@ public class EssayAdapter extends RecyclerView.Adapter<EssayAdapter.MyViewHolder
             ibMenu= (ImageButton) itemView.findViewById(R.id.ibMenu);
 
             likes= (ImageView) itemView.findViewById(R.id.likes);
+            essayStyle= (ImageView) itemView.findViewById(R.id.essayStyle);
         }
     }
     public interface ExpendImage{
-         void callBack(String str);
+         void callBack(EssayInfo essayInfo);
     };
 }

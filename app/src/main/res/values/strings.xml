@@ -7,4 +7,10 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="signature">这个同学很懒，什么都没有留下...</string>
+    <string name="nointernet">网络连接已断开，请检查网络</string>
+    <string name="imageFormat">.JPEG</string>
+    <!--URL-->
+    <string name="savaphotopath">/AMsgImage</string>
+    <string name="savafileservlet">http://115.28.16.220:8080/Upload/servlet/Upload</string>
+    <string name="defaultheadimage">http://115.28.16.220:8080/Upload/defaultFile/defaultHeadimage.jpg</string>
 </resources>

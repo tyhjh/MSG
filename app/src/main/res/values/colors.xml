@@ -10,4 +10,5 @@
     <color name="fab_color_pressed">#01bcd5</color>
     <color name="text_like_counter">#2b5a83</color>
     <color name="half">#f2000000</color>
+    <color name="nocolor">#00000000</color>
 </resources>

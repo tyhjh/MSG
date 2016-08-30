@@ -1,12 +1,19 @@
 package com.tyhj.mylogin.main;
 
 import android.graphics.Color;
+import android.support.design.widget.AppBarLayout;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import com.astuetz.PagerSlidingTabStrip;
+import com.squareup.picasso.Picasso;
 import com.tyhj.mylogin.R;
 
 import waveNavigation.MyMenuFragment;
@@ -17,11 +24,13 @@ import waveNavigation.LeftDrawerLayout;
 
 public class Home extends FragmentActivity {
     private LeftDrawerLayout mLeftDrawerLayout;
+    private LinearLayout llStyle;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        StatusBarUtil.setColor(this, Color.parseColor("#00000000"));
+        llStyle= (LinearLayout) findViewById(R.id.llStyle);
+        llStyle.setBackgroundResource(R.mipmap.appstyle1);
         initdrawerLayout();
         // Initialize the ViewPager and set an adapter
         ViewPager pager = (ViewPager) findViewById(R.id.vpTab);
@@ -29,6 +38,15 @@ public class Home extends FragmentActivity {
         // Bind the tabs to the ViewPager
         PagerSlidingTabStrip tabs = (PagerSlidingTabStrip) findViewById(R.id.tabs);
         tabs.setViewPager(pager);
+        ImageView ivOpenMenu= (ImageView) findViewById(R.id.ivOpenMenu);
+        ivOpenMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!mLeftDrawerLayout.isShownMenu()) {
+                    mLeftDrawerLayout.openDrawer();
+                }
+            }
+        });
     }
 
     private void initdrawerLayout() {

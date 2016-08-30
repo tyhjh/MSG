@@ -31,7 +31,7 @@
 
 
     <style name="ButtonTheme" parent="@style/Theme.AppCompat.Light.DarkActionBar">
-        <item name="colorButtonNormal">#f0111111</item>
+        <item name="colorButtonNormal">#111111</item>
         <item name="colorControlHighlight">#50ffcc00</item>
     </style>
 </resources>

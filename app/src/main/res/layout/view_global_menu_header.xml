@@ -11,12 +11,15 @@
         android:layout_height="match_parent"
         android:scaleType="centerCrop"/>
     <ImageView
+        android:layout_marginLeft="10dp"
+        android:elevation="8dp"
         android:id="@+id/userheadImage"
-        android:layout_width="85dp"
-        android:layout_height="85dp"
+        android:layout_width="78dp"
+        android:layout_height="78dp"
         android:layout_gravity="bottom"
         android:layout_marginBottom="70dp" />
     <TextView
+        android:elevation="4dp"
         android:id="@+id/tv_activity_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -26,12 +29,12 @@
         android:text="Tyhj"
         android:textColor="@android:color/white"/>
     <TextView
+        android:elevation="4dp"
         android:id="@+id/signature"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:padding="17dp"
-        android:text="这个同学很懒，什么都没有留下..."
         android:textColor="@android:color/white"
         android:textSize="12sp"/>
     <View

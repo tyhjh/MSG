@@ -14,5 +14,6 @@
             app:headerLayout="@layout/view_global_menu_header"
             app:itemIconTint="#8b8b8b"
             app:itemTextColor="#666666"
+            app:insetForeground="#00000000"
             app:menu="@menu/drawer_menu"/>
     </RelativeLayout>

@@ -1,129 +1,147 @@
 <?xml version="1.0" encoding="utf-8"?><!-- item_feed.xml -->
-<android.support.v7.widget.CardView
+
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/card_view"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
-    android:layout_margin="8dp"
-    card_view:cardCornerRadius="6dp">
-
-    <LinearLayout
+    >
+    <android.support.v7.widget.CardView
+        android:id="@+id/card_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_gravity="center"
+        android:layout_margin="8dp"
+        card_view:cardCornerRadius="6dp">
         <LinearLayout
-            android:padding="8dp"
-            android:orientation="horizontal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-            <ImageView
-                android:id="@+id/ivLz"
-                android:layout_width="40dp"
-                android:layout_height="40dp" />
-            <TextView
-                android:layout_gravity="center_vertical"
-                android:paddingLeft="7dp"
-                android:textSize="17sp"
-                android:id="@+id/tvLz"
-                android:text="Tyhj"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/vImageRoot"
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <ImageView
-                android:id="@+id/ivEssay"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="centerCrop" />
-            <TextView
-                android:padding="6dp"
-                android:id="@+id/tvEssay"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
-
-        <ImageView
-            android:id="@+id/ivFeedBottom"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-        <LinearLayout
-            android:background="#fafafa"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="8dp">
-
-            <ImageButton
-                android:id="@+id/ibtnLike"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:background="?android:attr/selectableItemBackgroundBorderless"
-                android:src="@drawable/icmecollect" />
-
-            <ImageButton
-                android:layout_marginLeft="20dp"
-                android:id="@+id/ibLeft"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:background="?android:attr/selectableItemBackgroundBorderless"
-                android:src="@drawable/icleftwords" />
-
-            <ImageButton
-                android:layout_marginLeft="20dp"
-                android:id="@+id/ibMenu"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:background="?android:attr/selectableItemBackgroundBorderless"
-                android:src="@drawable/icmeun1" />
+            android:orientation="vertical">
+            <LinearLayout
+                android:paddingLeft="5dp"
+                android:paddingBottom="5dp"
+                android:paddingTop="10dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:id="@+id/ivLz"
+                    android:elevation="2dp"
+                    android:layout_width="49dp"
+                    android:layout_height="49dp" />
+                <TextView
+                    android:layout_gravity="center_vertical"
+                    android:paddingLeft="7dp"
+                    android:textSize="16sp"
+                    android:id="@+id/tvLz"
+                    android:text="Tyhj"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
 
             <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center_vertical|right">
+                android:id="@+id/vImageRoot"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
                 <ImageView
-                    android:id="@+id/likes"
-                    android:clickable="true"
-                    android:background="?android:attr/selectableItemBackgroundBorderless"
-                    android:layout_width="16dp"
-                    android:layout_height="16dp"
-                    android:src="@drawable/iccollected" />
-
-                <TextSwitcher
-                    android:id="@+id/tsLikesCounter"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginRight="8dp"
-                    android:inAnimation="@anim/slide_in_likes_counter"
-                    android:outAnimation="@anim/slide_out_likes_counter">
-
-                    <TextView
-                        android:id="@+id/tvLikes"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="123 likes"
-                        android:textColor="@color/text_like_counter" />
-
-                    <TextView
-                        android:text="hhh"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/text_like_counter" />
-                </TextSwitcher>
+                    android:id="@+id/ivEssay"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop" />
+                <TextView
+                    android:padding="6dp"
+                    android:id="@+id/tvEssay"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
             </LinearLayout>
+
+            <ImageView
+                android:id="@+id/ivFeedBottom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <LinearLayout
+                android:background="#fafafa"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="8dp">
+
+                <ImageButton
+                    android:id="@+id/ibtnLike"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:background="?android:attr/selectableItemBackgroundBorderless"
+                    android:src="@drawable/icmecollect" />
+
+                <ImageButton
+                    android:layout_marginLeft="20dp"
+                    android:id="@+id/ibLeft"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:background="?android:attr/selectableItemBackgroundBorderless"
+                    android:src="@drawable/icleftwords" />
+
+                <ImageButton
+                    android:layout_marginLeft="20dp"
+                    android:id="@+id/ibMenu"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:background="?android:attr/selectableItemBackgroundBorderless"
+                    android:src="@drawable/icmeun1" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical|right">
+
+                    <ImageView
+                        android:id="@+id/likes"
+                        android:clickable="true"
+                        android:background="?android:attr/selectableItemBackgroundBorderless"
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:src="@drawable/iccollected" />
+
+                    <TextSwitcher
+                        android:id="@+id/tsLikesCounter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginRight="8dp"
+                        android:inAnimation="@anim/slide_in_likes_counter"
+                        android:outAnimation="@anim/slide_out_likes_counter">
+
+                        <TextView
+                            android:id="@+id/tvLikes"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="123 likes"
+                            android:textColor="@color/text_like_counter" />
+
+                        <TextView
+                            android:text="hhh"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/text_like_counter" />
+                    </TextSwitcher>
+                </LinearLayout>
+            </LinearLayout>
+
         </LinearLayout>
 
-    </LinearLayout>
-</android.support.v7.widget.CardView>
+    </android.support.v7.widget.CardView>
+    <ImageView
+        android:layout_marginLeft="1dp"
+        android:layout_marginRight="1dp"
+        android:id="@+id/essayStyle"
+        android:elevation="3dp"
+        android:layout_above="@id/ivLz"
+        android:layout_width="match_parent"
+        android:layout_height="20dp" />
+</RelativeLayout>
