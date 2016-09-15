@@ -46,6 +46,7 @@ import custom.MyPublic;
 import database.EssayInfo;
 import database.UserInfo;
 import mAdapter.EssayAdapter;
+import yalantis.PullToRefreshView;
 
 public class Last extends Fragment implements EssayAdapter.ExpendImage{
     private View view;
@@ -53,6 +54,7 @@ public class Last extends Fragment implements EssayAdapter.ExpendImage{
     private List<EssayInfo> essayInfos;
     private ImageView ivEssayExpend;
     private Button saveImage;
+    PullToRefreshView mPullToRefreshView;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,12 +65,24 @@ public class Last extends Fragment implements EssayAdapter.ExpendImage{
         view=inflater.inflate(R.layout.fragment_last,null);
         rvFeed = (RecyclerView) view.findViewById(R.id.rvFeed);
         setupFeed();
+        mPullToRefreshView = (PullToRefreshView) view.findViewById(R.id.pull_to_refresh);
         return view;
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        mPullToRefreshView.setOnRefreshListener(new PullToRefreshView.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                mPullToRefreshView.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        mPullToRefreshView.setRefreshing(false);
+                    }
+                }, 1500);
+            }
+        });
     }
 
     private void setupFeed() {

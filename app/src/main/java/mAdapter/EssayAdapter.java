@@ -86,6 +86,7 @@ public class EssayAdapter extends RecyclerView.Adapter<EssayAdapter.MyViewHolder
     public void setCallback(ExpendImage expendImage){
         this.expendImage=expendImage;
     }
+    //收藏
     private void likeClik(MyViewHolder holder, int position) {
         ObjectAnimator animator=(ObjectAnimator) AnimatorInflater.loadAnimator(context,
                 R.animator.likes);

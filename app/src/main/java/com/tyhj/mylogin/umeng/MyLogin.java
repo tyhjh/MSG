@@ -442,7 +442,7 @@ public class MyLogin extends AppCompatActivity {
     @Background
     public void setHeadImageUrl() {
         String url= new Myslq().getHeadImageUrl(etUserNumber.getText().toString());
-        if(!url.equals("null")) {
+        if(url!=null&&!url.equals("null")&&!url.equals("")) {
             showImage(url);
         }
     }

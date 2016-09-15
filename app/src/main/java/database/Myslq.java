@@ -27,6 +27,7 @@ public class Myslq {
             System.out.println("成功加载conn！");
         } catch (SQLException e) {
             e.printStackTrace();
+            System.out.println("找不到conn!");
         }
         try {
             if(conn!=null) {
@@ -133,6 +134,18 @@ public class Myslq {
         }
         return url;
     }
+    //修改头像
+    public void setHeadImageUrl(String headUrl,String id){
+        String sql="update user set headImaeg ='"+headUrl+"' where id ='"+id+"'";
+        try {
+            statement.executeUpdate(sql);
+            statement.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 
     //释放资源
     private void release(ResultSet rs) throws SQLException {

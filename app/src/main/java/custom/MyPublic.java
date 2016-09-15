@@ -30,6 +30,7 @@ import com.tyhj.mylogin.R;
 
 import cz.msebera.android.httpclient.client.HttpClient;
 import cz.msebera.android.httpclient.impl.client.DefaultHttpClient;
+import database.Myslq;
 import database.UserInfo;
 import cz.msebera.android.httpclient.Header;
 
@@ -46,7 +47,7 @@ public  class MyPublic {
     public static void setUserInfo(UserInfo userInfo) {
         MyPublic.userInfo = userInfo;
     }
-    private static int IMAGE_SIZE=10000;
+    private static int IMAGE_SIZE=2000;
     //是否有网络
     public static boolean isIntenet(Context context){
         ConnectivityManager con=(ConnectivityManager)context.getSystemService(Activity.CONNECTIVITY_SERVICE);
@@ -97,7 +98,7 @@ public  class MyPublic {
         context.startActivity(intent);
     }
     //上传文件
-    public static void UploadFile(File file, String name, final Context context){
+    public static void UploadFile(File file, final String name, final Context context, int fileType){
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
         try {
             FileInputStream in = new FileInputStream(file);
@@ -117,6 +118,7 @@ public  class MyPublic {
         RequestParams params = new RequestParams();
         params.put("file",img);
         params.put("fileName",name);
+        params.put("fileType",fileType);
         client.post(context.getString(R.string.savafileservlet), params, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int i, Header[] headers, byte[] bytes) {
@@ -133,7 +135,7 @@ public  class MyPublic {
         MyTime myTime=new MyTime();
         return myTime.getYear()+myTime.getMonth_()+myTime.getWeek_()+myTime.getDays()+myTime.getHour()+myTime.getMinute()+myTime.getSecond();
     }
-    //保存文件
+    //保存文件到本地
 
     public static void  savaFile(String url, String name,Handler handler,Context context){
         saveBitmapFile(returnBitMap(url),name,handler,context);
@@ -163,7 +165,7 @@ public  class MyPublic {
         }
         return bitmap;
     }
-    private static void saveBitmapFile(Bitmap bm, String name, Handler handler,Context context) {
+    public static void saveBitmapFile(Bitmap bm, String name, Handler handler,Context context) {
         if(bm==null)
             return;
         File f1 = new File(Environment.getExternalStorageDirectory()+context.getString(R.string.savaphotopath));

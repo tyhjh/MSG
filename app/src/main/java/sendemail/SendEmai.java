@@ -12,12 +12,13 @@ import org.apache.commons.mail.SimpleEmail;
  * Created by _Tyhj on 2016/7/31.
  */
 public class SendEmai {
-    private static final String from = "tyhj5@qq.com";
-    private static final String host = "smtp.qq.com";
+    private static final String from = "tyhj@tyhj5.com";
+    private static final String host = "smtp.tyhj5.com";
     private static final boolean isSSL = true;
-    private static final int port = 465;
-    private static final String username = "tyhj5@qq.com";
-    private static final String password = "swtqbhkrldwnbdjh";
+    private static final int port = 25;
+    private static final String username = "tyhj@tyhj5.com";
+    //private static final String password1= "swtqbhkrldwnbdjh";
+    private static final String password= "Han123456";
     public SendEmai(String emailnumber,String str, Context context,String name){
         //发送邮件
             try {
@@ -25,7 +26,7 @@ public class SendEmai {
                     name="用户";
                 }
                 Email email = new SimpleEmail();
-                email.setSSLOnConnect(isSSL);
+                //email.setSSLOnConnect(isSSL);
                 email.setHostName(host);
                 email.setSmtpPort(port);
                 email.setAuthentication(username, password);
