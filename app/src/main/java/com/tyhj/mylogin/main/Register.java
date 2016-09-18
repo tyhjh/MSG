@@ -80,6 +80,10 @@ public class Register extends Activity {
             registerNow();
         }
     }
+    @UiThread(delay = 1000)
+    void finishActivity(){
+        this.finish();
+    }
     @Click(R.id.btRegister)
     void tryRegister() {
           gb();
@@ -185,6 +189,7 @@ public class Register extends Activity {
                     etRegisterName.getText().toString().trim(),etRegisterEmail.getText().toString().trim(),SIGNATURE,"中国",null);
             saveLogIn(new UserInfo(etRegisterNumber.getText().toString().trim(),null,null,null,null,null,null,null));
             myToast(this,"注册成功");
+            finishActivity();
         } catch (Exception e) {
             e.printStackTrace();
             myToast(this,"失败，请稍后再试");

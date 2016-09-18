@@ -11,7 +11,7 @@ import java.sql.SQLException;
 import custom.MyPublic;
 
 public class Myslq {
-    String url="jdbc:mysql://115.28.16.220/tyhj1?useUnicode=true&characterEncoding=utf-8";
+    String url="jdbc:mysql://115.28.16.220/tyhj1?useUnicode=true&characterEncoding=utf8";
     Connection conn;
     Statement statement;
     public Myslq(){
@@ -134,9 +134,10 @@ public class Myslq {
     }
     //修改头像
     public void setHeadImageUrl(String headUrl,String id){
-        String sql="update user set headImaeg ='"+headUrl+"' where id ='"+id+"'";
+        String sql="update user set headImage ='"+headUrl+"' where id ='"+id+"'";
         try {
             statement.executeUpdate(sql);
+            MyPublic.setMyslq(new Myslq());
         } catch (SQLException e) {
             e.printStackTrace();
         }

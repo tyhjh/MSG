@@ -39,7 +39,7 @@ public class Welcom extends Activity {
         mMatchTextView.hide();
         matchButton.hide();
         matchButton.setClickable(false);
-        Snackbar.make(matchButton,"数据加载中",Snackbar.LENGTH_INDEFINITE).show();
+       // Snackbar.make(matchButton,"数据加载中",Snackbar.LENGTH_INDEFINITE).show();
         bg();
     }
     @AfterViews
@@ -49,7 +49,7 @@ public class Welcom extends Activity {
         mMatchTextView.setText("Tyhj Message");
 
     }
-    @UiThread(delay = 2000)
+    @UiThread(delay = 1500)
     void bg () {
         SharedPreferences sharedPreferences = this.getSharedPreferences("saveLogin", MODE_PRIVATE);
         if (sharedPreferences != null && sharedPreferences.getString("password", null) != null) {
@@ -73,11 +73,6 @@ public class Welcom extends Activity {
             finishActivity();
         }else
             isFinish=true;
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
     }
     @UiThread
     void finishActivity(){
