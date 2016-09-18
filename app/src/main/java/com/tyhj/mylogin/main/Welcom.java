@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -21,20 +22,24 @@ import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
 
 import custom.MyPublic;
+import database.Myslq;
 
 @EActivity(R.layout.activity_welcom)
 public class Welcom extends Activity {
     MatchTextView mMatchTextView;
     MatchButton matchButton;
+    Boolean isFinish=false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        initMysql();
     }
     @Click(R.id.mbt)
     void log(){
         mMatchTextView.hide();
         matchButton.hide();
         matchButton.setClickable(false);
+        Snackbar.make(matchButton,"数据加载中",Snackbar.LENGTH_INDEFINITE).show();
         bg();
     }
     @AfterViews
@@ -42,8 +47,9 @@ public class Welcom extends Activity {
         matchButton= (MatchButton) findViewById(R.id.mbt);
         mMatchTextView= (MatchTextView) findViewById(R.id.mtv);
         mMatchTextView.setText("Tyhj Message");
+
     }
-    @UiThread(delay = 1200)
+    @UiThread(delay = 2000)
     void bg () {
         SharedPreferences sharedPreferences = this.getSharedPreferences("saveLogin", MODE_PRIVATE);
         if (sharedPreferences != null && sharedPreferences.getString("password", null) != null) {
@@ -57,12 +63,33 @@ public class Welcom extends Activity {
                     sharedPreferences.getString("snumber", null)
             ));
             startActivity(new Intent(Welcom.this, Home.class));
-            this.finish();
             overridePendingTransition(R.anim.out, R.anim.enter);
         } else {
             startActivity(new Intent(Welcom.this, MyLogin_.class));
-            this.finish();
             //overridePendingTransition(R.anim.out, R.anim.enter);
         }
+        if (isFinish) {
+            System.out.println("成功关闭1！");
+            finishActivity();
+        }else
+            isFinish=true;
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+    @UiThread
+    void finishActivity(){
+        this.finish();
+    }
+    @Background
+    void initMysql(){
+        MyPublic.setMyslq(new Myslq());
+        if(isFinish) {
+            System.out.println("成功关闭2！");
+            finishActivity();
+        }else
+            isFinish=true;
     }
 }

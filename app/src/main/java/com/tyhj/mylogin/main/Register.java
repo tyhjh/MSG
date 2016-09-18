@@ -180,7 +180,7 @@ public class Register extends Activity {
     //开始注册
     private void registerNow() {
         try {
-            new Myslq().addUser(etRegisterNumber.getText().toString().trim(),
+            MyPublic.getMyslq().addUser(etRegisterNumber.getText().toString().trim(),
                     etRegisterPassword.getText().toString().trim(),getString(R.string.defaultheadimage),
                     etRegisterName.getText().toString().trim(),etRegisterEmail.getText().toString().trim(),SIGNATURE,"中国",null);
             saveLogIn(new UserInfo(etRegisterNumber.getText().toString().trim(),null,null,null,null,null,null,null));
@@ -262,7 +262,7 @@ public class Register extends Activity {
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        CANUSEEMAIL = new Myslq().isEmailHad(etRegisterEmail.getText().toString(), Register.this);
+                        CANUSEEMAIL = MyPublic.getMyslq().isEmailHad(etRegisterEmail.getText().toString(), Register.this);
                         if (CANUSEEMAIL)
                             myToast(Register.this, "该邮箱已被注册");
                     }
@@ -287,7 +287,7 @@ public class Register extends Activity {
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        CANUSNUMBER=new Myslq().isUserHad(etRegisterNumber.getText().toString(),Register.this);
+                        CANUSNUMBER=MyPublic.getMyslq().isUserHad(etRegisterNumber.getText().toString(),Register.this);
                         if(CANUSNUMBER)
                             myToast(Register.this,"该手机已被注册");
                     }

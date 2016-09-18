@@ -40,6 +40,8 @@ import cz.msebera.android.httpclient.Header;
 public  class MyPublic {
     //用户信息
     private static UserInfo userInfo;
+    //数据库
+    private static Myslq myslq;
     private static ViewOutlineProvider viewOutlineProvider;
     public static UserInfo getUserInfo() {
         return userInfo;
@@ -195,5 +197,13 @@ public  class MyPublic {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+    //初始化数据库
+
+    public static void setMyslq(Myslq myslq) {
+        MyPublic.myslq = myslq;
+    }
+    public static Myslq getMyslq() {
+        return myslq;
     }
 }

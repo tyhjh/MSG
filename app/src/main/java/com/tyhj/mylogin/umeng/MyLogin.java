@@ -122,15 +122,16 @@ public class MyLogin extends AppCompatActivity {
         UserInfo userInfo;
         if(!etUserPassord.getText().toString().trim().equals("")&&!etUserNumber.getText().toString().trim().equals("")){
             try {
-                userInfo=new Myslq().logIn(etUserNumber.getText().toString().trim(),etUserPassord.getText().toString().trim());
+                userInfo=MyPublic.getMyslq().logIn(etUserNumber.getText().toString().trim(),etUserPassord.getText().toString().trim());
             }catch (Exception e){
                 mySnakbar(btLogin,"网络异常",Snackbar.LENGTH_SHORT);
                 userInfo=null;
             }
              if(userInfo!=null) {
+                 startActivity();
                  saveLogIn(userInfo);
                  getString();
-                 startActivity();
+                 finishActivity();
              }else
                  mySnakbar(btLogin,"账号或密码错误",Snackbar.LENGTH_SHORT);
         }else {
@@ -271,13 +272,14 @@ public class MyLogin extends AppCompatActivity {
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
-                            if(!new Myslq().isUserHad(finalOpenid,null))
-                                new Myslq().addUser(finalOpenid,null, finalImage_url, finalScreen_name,null,getString(R.string.signature), finalLocation,null);
-                            UserInfo userInfo=new Myslq().logIn(finalOpenid,null);
+                            if(!MyPublic.getMyslq().isUserHad(finalOpenid,null))
+                                MyPublic.getMyslq().addUser(finalOpenid,null, finalImage_url, finalScreen_name,null,getString(R.string.signature), finalLocation,null);
+                            UserInfo userInfo=MyPublic.getMyslq().logIn(finalOpenid,null);
                             if(userInfo!=null) {
+                                startActivity();
                                 saveLogIn(userInfo);
                                 getString();
-                                startActivity();
+                                finishActivity();
                             }
                         }
                     }).start();
@@ -300,6 +302,9 @@ public class MyLogin extends AppCompatActivity {
     @UiThread
     public void startActivity() {
         MyPublic.startActivity(MyLogin.this, Home.class);
+    }
+    @UiThread
+    public void finishActivity(){
         this.finish();
     }
 
@@ -441,7 +446,7 @@ public class MyLogin extends AppCompatActivity {
 
     @Background
     public void setHeadImageUrl() {
-        String url= new Myslq().getHeadImageUrl(etUserNumber.getText().toString());
+        String url= MyPublic.getMyslq().getHeadImageUrl(etUserNumber.getText().toString());
         if(url!=null&&!url.equals("null")&&!url.equals("")) {
             showImage(url);
         }

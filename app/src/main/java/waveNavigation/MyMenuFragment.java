@@ -235,7 +235,7 @@ public class MyMenuFragment extends MenuFragment {
                         new Thread(new Runnable() {
                             @Override
                             public void run() {
-                                new Myslq().setHeadImageUrl(getString(R.string.headImageUrl)+fileName,MyPublic.getUserInfo().getNumber());
+                                MyPublic.getMyslq().setHeadImageUrl(getString(R.string.headImageUrl)+fileName,MyPublic.getUserInfo().getNumber());
                                 file.delete();
                             }
                         }).start();

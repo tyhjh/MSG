@@ -46,11 +46,8 @@ public class Myslq {
         try {
                 rs = (ResultSet) statement.executeQuery(sql);
             if (rs.next()) {
-                release(rs);
                 return true;
             } else {
-                conn.close();
-                statement.close();
                 rs.close();
                 return false;
             }
@@ -66,15 +63,19 @@ public class Myslq {
         try {
             rs = (ResultSet) statement.executeQuery(sql);
             if (rs.next()) {
-                release(rs);
                 return true;
             } else {
-                release(rs);
                 return false;
             }
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
+        }finally {
+            try {
+                rs.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
     }
     //新建用户
@@ -83,8 +84,6 @@ public class Myslq {
                 "','"+signature +"','"+place+"','"+snumber +"')";
         try {
             statement.executeUpdate(sql);
-            conn.close();
-            statement.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -112,7 +111,7 @@ public class Myslq {
             return null;
         }finally {
             try {
-                release(rs);
+                rs.close();
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -127,7 +126,6 @@ public class Myslq {
             rs = (ResultSet) statement.executeQuery(sql);
             if (rs.next()) {
                 url=rs.getString(3);
-                release(rs);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -139,17 +137,8 @@ public class Myslq {
         String sql="update user set headImaeg ='"+headUrl+"' where id ='"+id+"'";
         try {
             statement.executeUpdate(sql);
-            statement.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    }
-
-
-
-    //释放资源
-    private void release(ResultSet rs) throws SQLException {
-        conn.close();
-        statement.close();
     }
 }
